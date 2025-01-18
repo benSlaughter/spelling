@@ -1,0 +1,9 @@
+<%= render(Primer::Beta::Subhead.new(hide_border: true)) do |component| %>
+  <% component.with_heading(tag: :h1) do %>
+    Update your password
+  <% end %>
+<% end %>
+
+<%= primer_form_with(url: password_path(params[:token]), method: :put) do |f| %>
+  <%= render UpdatePasswordForm.new(f) %>
+<% end %>

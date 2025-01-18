@@ -1,0 +1,16 @@
+<%= form_for @word, url: week_practice_path(week_id: @week, id: @word) do |f| %>
+  <div class="practice-container">
+    <div class="practice-audio">
+      <%= audio_tag(url_for(@word.audio_data), autoplay: true, controls: true) %>
+    </div>
+    <% if @result %>
+      <%= render(Primer::Alpha::Banner.new(scheme: @word.errors.any? ? :danger : :success)) { @result.to_s } %>
+    <% end %>
+    <div class="practice-word">
+      <%= f.text_field :title, value: "", autofocus: true %>
+    </div>
+    <div class="practice-button">
+      <%= f.submit "Go!", class: "Button--primary Button--medium Button" %>
+    </div>
+  </div>
+<% end %>

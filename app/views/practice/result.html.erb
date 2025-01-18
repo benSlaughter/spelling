@@ -1,0 +1,2 @@
+<%= render(Primer::Alpha::Banner.new(scheme: :success)) { "You completed your spelling practice! Well done!" } %>
+<%= button_to "Return to: #{@week.display}", @week, method: :get, class: "Button--primary Button--medium Button mt-3" %>

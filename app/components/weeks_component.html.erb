@@ -1,0 +1,20 @@
+<%= render(Primer::Beta::Subhead.new(hide_border: true)) do |component| %>
+  <% component.with_heading(tag: :h1) do %>
+    All spellings
+  <% end %>
+  <% component.with_actions do %>
+    <% if is_admin? %>
+      <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, href: new_week_path)) do %>
+        Create new week
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<%= render(Primer::Alpha::ActionList.new) do |component| %>
+  <% weeks.each do |week| %>
+    <% component.with_item(label: week.display, href: week_path(week), content_arguments: { p: 1 }) do |item| %>
+      <% item.with_leading_visual_icon(icon: :"paper-airplane") %>
+    <% end %>
+  <% end %>
+<% end %>
+<%= will_paginate weeks, previous_label: "", next_label: "" %>

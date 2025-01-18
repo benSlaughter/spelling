@@ -1,0 +1,31 @@
+<%= render(Primer::Beta::Subhead.new(hide_border: true)) do |component| %>
+  <% component.with_heading(tag: :h1) do %>
+    <% @week.display %>
+  <% end %>
+  <% component.with_description do %>
+    <% @week.note %>
+  <% end %>
+  <% component.with_actions do %>
+    <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, href: practice_path)) do %>
+      Practice
+    <% end %>
+    <% if is_admin? %>
+      <%= render(Primer::Beta::Button.new(scheme: :secondary, tag: :a, href: edit_week_path)) do %>
+        Edit
+      <% end %>
+      <%= render(Primer::Beta::Button.new(scheme: :danger, tag: :a, href: week_path, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'})) do %>
+        Delete
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<div class="week-container">
+  <% @week.words.each do |word| %>
+    <div class="word-title">
+      <h2><%= word.title %></h2>
+    </div>
+    <div class="word-sound">
+      <%= audio_tag(url_for(word.audio_data), autoplay: false, controls: true) %>
+    </div>
+  <% end %>
+</div>

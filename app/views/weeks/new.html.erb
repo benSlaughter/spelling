@@ -1,0 +1,8 @@
+<%= render(Primer::Beta::Subhead.new(hide_border: true)) do |component| %>
+  <% component.with_heading(tag: :h1) do %>
+    Create weekly spelling
+  <% end %>
+<% end %>
+<%= primer_form_with(model: @week) do |f| %>
+  <%= render WeekForm.new(f) %>
+<% end %>
