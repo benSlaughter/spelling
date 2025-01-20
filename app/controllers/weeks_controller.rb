@@ -1,6 +1,6 @@
 class WeeksController < ApplicationController
   allow_unauthenticated_access only: %i[ index show ]
-  
+
   def index
     @weeks = Week.all
   end

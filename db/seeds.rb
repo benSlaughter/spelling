@@ -11,7 +11,7 @@
 # New spellings on a monday
 # Tests on Mondays
 #
-week1 = Week.find_or_create_by!(date: Date.new(2024,11,18), note: "'oh' sounds")
+week1 = Week.find_or_create_by!(date: Date.new(2024, 11, 18), note: "'oh' sounds")
 
 Word.find_or_create_by!(title: "Sew", week: week1)
 Word.find_or_create_by!(title: "Pharaoh", week: week1)
@@ -19,7 +19,7 @@ Word.find_or_create_by!(title: "Goes", week: week1)
 Word.find_or_create_by!(title: "Folk", week: week1)
 Word.find_or_create_by!(title: "Although", week: week1)
 
-week2 = Week.find_or_create_by!(date: Date.new(2024,11,25), note: "test")
+week2 = Week.find_or_create_by!(date: Date.new(2024, 11, 25), note: "test")
 
 Word.find_or_create_by!(title: "Friend", week: week2)
 Word.find_or_create_by!(title: "Said", week: week2)
@@ -27,7 +27,7 @@ Word.find_or_create_by!(title: "Any", week: week2)
 Word.find_or_create_by!(title: "Leopard", week: week2)
 Word.find_or_create_by!(title: "February", week: week2)
 
-week3 = Week.find_or_create_by!(date: Date.new(2025,1,6), note: "'b' as in baby")
+week3 = Week.find_or_create_by!(date: Date.new(2025, 1, 6), note: "'b' as in baby")
 
 Word.find_or_create_by!(title: "Build", week: week3)
 Word.find_or_create_by!(title: "Bottle", week: week3)
@@ -35,7 +35,7 @@ Word.find_or_create_by!(title: "Bridge", week: week3)
 Word.find_or_create_by!(title: "Cupboard", week: week3)
 Word.find_or_create_by!(title: "February", week: week3)
 
-week4 = Week.find_or_create_by!(date: Date.new(2025,1,13), note: "M")
+week4 = Week.find_or_create_by!(date: Date.new(2025, 1, 13), note: "M")
 
 Word.find_or_create_by!(title: "Diaphragm", week: week4)
 Word.find_or_create_by!(title: "Bomb", week: week4)
@@ -43,7 +43,7 @@ Word.find_or_create_by!(title: "Column", week: week4)
 Word.find_or_create_by!(title: "Machine", week: week4)
 Word.find_or_create_by!(title: "Imagine", week: week4)
 
-week5 = Week.find_or_create_by!(date: Date.new(2025,1,20), note: "Q and Qw")
+week5 = Week.find_or_create_by!(date: Date.new(2025, 1, 20), note: "Q and Qw")
 
 Word.find_or_create_by!(title: "Quickly", week: week5)
 Word.find_or_create_by!(title: "Question", week: week5)

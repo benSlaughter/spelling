@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   root "weeks#index"
 
   resources :weeks  do
-    resources :practice, only: [:show, :update]
+    resources :practice, only: [ :show, :update ]
   end
 end

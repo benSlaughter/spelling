@@ -7,7 +7,7 @@ class HeaderComponent < ViewComponent::Base
     @title = title
     @subtitle = subtitle
   end
-  
+
   def heading
     render(Primer::Beta::Subhead.new(hide_border: true)) do |component|
       component.with_heading(tag: :h1) do
