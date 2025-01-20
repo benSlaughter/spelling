@@ -3,11 +3,11 @@
     <div class="practice-audio">
       <%= audio_tag(url_for(@word.audio_data), autoplay: true, controls: true) %>
     </div>
-    <% if @result %>
-      <%= render(Primer::Alpha::Banner.new(scheme: @word.errors.any? ? :danger : :success)) { @result.to_s } %>
+    <% unless @correct.nil? %>
+      <%= render(Primer::Alpha::Banner.new(scheme: is_correct? ? :success : :danger)) { message } %>
     <% end %>
     <div class="practice-word">
-      <%= f.text_field :title, value: "", autofocus: true %>
+      <%= f.text_field :title, value: "", autofocus: true, autocomplete: false, autocorrect: false, spellcheck: false %>
     </div>
     <div class="practice-button">
       <%= f.submit "Go!", class: "Button--primary Button--medium Button" %>
