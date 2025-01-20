@@ -35,5 +35,21 @@ Word.find_or_create_by!(title: "Bridge", week: week3)
 Word.find_or_create_by!(title: "Cupboard", week: week3)
 Word.find_or_create_by!(title: "February", week: week3)
 
+week4 = Week.find_or_create_by!(date: Date.new(2025,1,13), note: "M")
+
+Word.find_or_create_by!(title: "Diaphragm", week: week4)
+Word.find_or_create_by!(title: "Bomb", week: week4)
+Word.find_or_create_by!(title: "Column", week: week4)
+Word.find_or_create_by!(title: "Machine", week: week4)
+Word.find_or_create_by!(title: "Imagine", week: week4)
+
+week5 = Week.find_or_create_by!(date: Date.new(2025,1,20), note: "Q and Qw")
+
+Word.find_or_create_by!(title: "Quickly", week: week5)
+Word.find_or_create_by!(title: "Question", week: week5)
+Word.find_or_create_by!(title: "Quarter", week: week5)
+Word.find_or_create_by!(title: "Weigh", week: week5)
+Word.find_or_create_by!(title: "Awkward", week: week5)
+
 user = User.find_by(email_address: "you@example.org")
 User.create! email_address: "you@example.org", password: "s3cr3t", password_confirmation: "s3cr3t", username: "testing" unless user
