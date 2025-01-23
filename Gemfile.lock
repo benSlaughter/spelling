@@ -198,7 +198,7 @@ GEM
     parser (3.3.7.0)
       ast (~> 2.4.1)
       racc
-    primer_view_components (0.36.4)
+    primer_view_components (0.36.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
       octicons (>= 18.0.0)
@@ -398,7 +398,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
-  primer_view_components (~> 0.36.2)
+  primer_view_components (~> 0.36.5)
   propshaft
   pry (~> 0.15.0)
   puma (>= 5.0)
