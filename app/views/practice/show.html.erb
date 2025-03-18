@@ -1,11 +1,13 @@
 <%= form_for @word, url: week_practice_path(week_id: @week, id: @word) do |f| %>
   <div class="practice-container">
+    <% unless @correct.nil? %>
+      <div class="practice-banner">
+        <%= render(Primer::Alpha::Banner.new(scheme: is_correct? ? :success : :danger)) { message } %>
+      </div>
+    <% end %>
     <div class="practice-audio">
       <%= audio_tag(url_for(@word.audio_data), autoplay: true, controls: true) %>
     </div>
-    <% unless @correct.nil? %>
-      <%= render(Primer::Alpha::Banner.new(scheme: is_correct? ? :success : :danger)) { message } %>
-    <% end %>
     <div class="practice-word">
       <%= f.text_field :title, value: "", autofocus: true, autocomplete: false, autocorrect: false, spellcheck: false %>
     </div>

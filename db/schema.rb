@@ -59,7 +59,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_09_220052) do
 
   create_table "weeks", force: :cascade do |t|
     t.text "note"
-    t.date "date"
+    t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

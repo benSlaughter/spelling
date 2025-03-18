@@ -11,45 +11,75 @@
 # New spellings on a monday
 # Tests on Mondays
 #
-week1 = Week.find_or_create_by!(date: Date.new(2024, 11, 18), note: "'oh' sounds")
+weeks = [
+    {
+        date: Date.new(2024, 11, 18),
+        note: "'oh' sounds",
+        words: %w(Sew Pharaoh Goes Folk Although)
+    },
+    {
+        date: Date.new(2024, 11, 25),
+        note: "",
+        words: %w(Friend Said Any Leopard February)
+    },
+    {
+        date: Date.new(2025, 1, 6),
+        note: "'b' as in baby",
+        words: %w(Build Bottle Bridge Cupboard February)
+    },
+    {
+        date: Date.new(2025, 1, 13),
+        note: "M",
+        words: %w(Diaphragm Bomb Column Machine Imagine)
+    },
+    {
+        date: Date.new(2025, 1, 20),
+        note: "Q and Qw",
+        words: %w(Quickly Question Quarter Weigh Awkward)
+    },
+    {
+        date: Date.new(2025, 1, 27),
+        note: "P",
+        words: %w(Piece Appear Popular Opposite Poured)
+    },
+    {
+        date: Date.new(2025, 2, 3),
+        note: "J",
+        words: %w(Bridge Trudge Soldier Suggest Change)
+    },
+    {
+        date: Date.new(2025, 2, 10),
+        note: "Ch",
+        words: %w(Picture Creature Ancient Children Clutch)
+    },
+    {
+        date: Date.new(2025, 2, 24),
+        note: "Oy",
+        words: %w(Enjoyed Lawyer Loyal Voice Noisy)
+    },
+    {
+        date: Date.new(2025, 3, 3),
+        note: "Ooh",
+        words: %w(Two Too To Through Threw Blue Illusion)
+    },
+    {
+        date: Date.new(2025, 3, 10),
+        note: "oo",
+        words: %w(Understood Shook Push Pudding Woman)
+    },
+    {
+        date: Date.new(2025, 3, 17),
+        note: "ear",
+        words: %w(Here Hear Disappear Engineer Cereal Sincere)
+    },
+]
 
-Word.find_or_create_by!(title: "Sew", week: week1)
-Word.find_or_create_by!(title: "Pharaoh", week: week1)
-Word.find_or_create_by!(title: "Goes", week: week1)
-Word.find_or_create_by!(title: "Folk", week: week1)
-Word.find_or_create_by!(title: "Although", week: week1)
-
-week2 = Week.find_or_create_by!(date: Date.new(2024, 11, 25), note: "test")
-
-Word.find_or_create_by!(title: "Friend", week: week2)
-Word.find_or_create_by!(title: "Said", week: week2)
-Word.find_or_create_by!(title: "Any", week: week2)
-Word.find_or_create_by!(title: "Leopard", week: week2)
-Word.find_or_create_by!(title: "February", week: week2)
-
-week3 = Week.find_or_create_by!(date: Date.new(2025, 1, 6), note: "'b' as in baby")
-
-Word.find_or_create_by!(title: "Build", week: week3)
-Word.find_or_create_by!(title: "Bottle", week: week3)
-Word.find_or_create_by!(title: "Bridge", week: week3)
-Word.find_or_create_by!(title: "Cupboard", week: week3)
-Word.find_or_create_by!(title: "February", week: week3)
-
-week4 = Week.find_or_create_by!(date: Date.new(2025, 1, 13), note: "M")
-
-Word.find_or_create_by!(title: "Diaphragm", week: week4)
-Word.find_or_create_by!(title: "Bomb", week: week4)
-Word.find_or_create_by!(title: "Column", week: week4)
-Word.find_or_create_by!(title: "Machine", week: week4)
-Word.find_or_create_by!(title: "Imagine", week: week4)
-
-week5 = Week.find_or_create_by!(date: Date.new(2025, 1, 20), note: "Q and Qw")
-
-Word.find_or_create_by!(title: "Quickly", week: week5)
-Word.find_or_create_by!(title: "Question", week: week5)
-Word.find_or_create_by!(title: "Quarter", week: week5)
-Word.find_or_create_by!(title: "Weigh", week: week5)
-Word.find_or_create_by!(title: "Awkward", week: week5)
+weeks.each do |week_attr|
+    week = Week.find_or_create_by!(date: week_attr[:date], note: week_attr[:date])
+    week_attr[:words].each do |word|
+        Word.find_or_create_by!(title: word, week: week)
+    end
+end
 
 user = User.find_by(email_address: "you@example.org")
 User.create! email_address: "you@example.org", password: "s3cr3t", password_confirmation: "s3cr3t", username: "testing" unless user

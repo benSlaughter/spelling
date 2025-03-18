@@ -1,13 +1,28 @@
 .practice-container {
   margin-top: 10px;
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(3, auto);
+  grid-template-columns: 1fr auto;
   grid-gap: 10px;
+  grid-template-areas: 
+    "notice notice"
+    "audio audio"
+    "word button";
+}
+
+.practice-banner {
+  grid-area: notice;
+  grid-column: span 2;
+}
+
+.practice-audio {
+  grid-area: audio;
+  grid-column: span 2;
 }
 
 .practice-word {
   grid-column-start: 1;
+  grid-area: word;
 
   input {
     width: 100%;
@@ -16,4 +31,12 @@
     border-radius: 6px;
     border-width: thin;
   }
+}
+
+.practice-button {
+  grid-area: button;
+}
+
+audio {
+  width: 100%;
 }
