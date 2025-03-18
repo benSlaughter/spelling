@@ -9,7 +9,7 @@
       <%= audio_tag(url_for(@word.audio_data), autoplay: true, controls: true) %>
     </div>
     <div class="practice-word">
-      <%= f.text_field :title, value: "", autofocus: true, autocomplete: false, autocorrect: false, spellcheck: false %>
+      <%= f.text_field :title, value: "", autofocus: true, autocomplete: "off", autocorrect: "off", spellcheck: "off" %>
     </div>
     <div class="practice-button">
       <%= f.submit "Go!", class: "Button--primary Button--medium Button" %>
