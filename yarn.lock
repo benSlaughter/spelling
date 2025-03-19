@@ -73,7 +73,7 @@
 
 "@oddbird/popover-polyfill@^0.5.2":
   version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@oddbird/popover-polyfill/-/popover-polyfill-0.5.2.tgz#9a142cae54b6e48824bec61e94e39541c9746b69"
+  resolved "https://registry.npmjs.org/@oddbird/popover-polyfill/-/popover-polyfill-0.5.2.tgz"
   integrity sha512-iFrvar5SOMtKFOSjYvs4z9UlLqDdJbMx0mgISLcPedv+g0ac5sgeETLGtipHCVIae6HJPclNEH5aCyD1RZaEHw==
 
 "@primer/behaviors@^1.3.4":
@@ -93,15 +93,15 @@
   dependencies:
     "@lit-labs/ssr-dom-shim" "^1.2.0"
 
-"@primer/primitives@^10.3.2":
-  version "10.3.2"
-  resolved "https://registry.yarnpkg.com/@primer/primitives/-/primitives-10.3.2.tgz#f290c66ea9536cf95110c555ad87905bf9624397"
-  integrity sha512-TNFkoKEBj+5D5JG05IxWaXfPU5v156pY93E5+SMCGqZqQ8ID3c0lDhLBmjbNG03aRErErViSrBKQW0b327r/Cw==
+"@primer/primitives@^10.3.2", "@primer/primitives@9.x || 10.x":
+  version "10.4.0"
+  resolved "https://registry.npmjs.org/@primer/primitives/-/primitives-10.4.0.tgz"
+  integrity sha512-cRgzqT4IU3GW4v8g2L3nWRcj5QcgzLfWfARUmIVO97WMvE8mRMjLLAx1rQz8fTP4YOeysMxkOV1C1mGq7GUFYQ==
 
 "@primer/view-components@^0.36.4":
-  version "0.36.4"
-  resolved "https://registry.yarnpkg.com/@primer/view-components/-/view-components-0.36.4.tgz#403b09509ae57e1d484de70ddd0a523c21817af6"
-  integrity sha512-ePk7SKZ6Lr4bHoom0s9/tJR+GgzuUQjZ4Mq+Ts4o9LnmKE5WKAB/TksQJAXITh2O9UpAHV08xo5af/AmZq0TJQ==
+  version "0.36.5"
+  resolved "https://registry.npmjs.org/@primer/view-components/-/view-components-0.36.5.tgz"
+  integrity sha512-i3SpCe7umffMNWhfFCHflap0aXXn1Rd85N0RCrcFRmKBirSBIX9WkAvW1VQtdxKCwfwH3VTUGaEfqfgDE4ttCA==
   dependencies:
     "@github/auto-check-element" "^5.2.0"
     "@github/auto-complete-element" "^3.6.2"
@@ -174,12 +174,22 @@ stream-combiner@~0.0.3:
   dependencies:
     duplexer "~0.1.1"
 
-through@2, through@~2.3, through@~2.3.1:
-  version "2.3.8"
-  resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
-  integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
-
 through@~1.1.0:
   version "1.1.2"
   resolved "https://registry.npmjs.org/through/-/through-1.1.2.tgz"
   integrity sha512-YG7jdC/XCqsooOdR2LJpeuQ5WnuYnHohUMJq4xMN09rbr81rli6JfZbGa07dWJg24qb8h6mGC+0G74eak9hrnw==
+
+through@~2.3:
+  version "2.3.8"
+  resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
+  integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
+
+through@~2.3.1:
+  version "2.3.8"
+  resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
+  integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
+
+through@2:
+  version "2.3.8"
+  resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
+  integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
