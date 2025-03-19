@@ -1,0 +1,164 @@
+<style>
+@font-face {
+  font-family: 'Scrabble';
+  src: url('<%= asset_path("Scramble-KVBe.ttf") %>') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.scrabble-banner {
+  margin-bottom: 10px;
+}
+
+.scrabble-container {
+  margin-top: 10px;
+  padding: 10px;
+  width: fit-content;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(60px, min-content));
+  grid-gap: 10px;
+  background: lightgrey;
+  border-radius: 5px;
+}
+
+.board-space {
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 100, 67, 0.75);
+  border-radius: 2px;
+}
+
+.guess-box {
+  grid-row-start: 2;
+}
+
+.letter-box {
+  grid-row-start: 1;
+}
+
+.letter-tile {
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+  background: #ffe6a8;
+  font-family: Scrabble;
+  font-size: 50px;
+  line-height: 50px;
+  text-indent: -2px;
+  border-radius: 2px 10px 5px 10px;
+}
+
+#next-button {
+  margin-top: 10px;
+}
+</style>
+
+<script>
+function isEmpty(node) {
+  return node.textContent.trim() === "";
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("tile", ev.target.id);
+  ev.dataTransfer.setData("home", ev.target.parentElement.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var drag_data = ev.dataTransfer.getData("tile");
+  var home_data = ev.dataTransfer.getData("home");
+  
+  if (isEmpty(ev.target)) {
+    ev.target.appendChild(document.getElementById(drag_data));
+  } else {
+    console.log(ev.target)
+    ev.target.closest(".board-space").appendChild(document.getElementById(drag_data));
+    document.getElementById(home_data).appendChild(ev.target.closest(".letter-tile"))
+  }
+
+  if (isCorrect()) { showNextButton() }
+}
+
+function getAnswer() {
+  var elements = document.querySelectorAll(".guess-box span");
+  let result = [];
+  for (let item of elements) {
+    result.push(item.textContent);
+  }
+
+  return result.join('');
+}
+
+function isCorrect() {
+  return !!(getAnswer() == '<%= @word.title.downcase %>');
+}
+
+function showNextButton() {
+  var element = document.getElementById("next-button");
+  element.hidden = false;
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+  const banner = document.getElementsByClassName("scrabble-banner")[0]
+  const bannercloser = banner.lastElementChild.firstElementChild
+  function checkCookie(){
+    if (getCookie('scrabble-banner')) {
+        banner.hidden = true;
+    } else {
+        banner.hidden = false;
+    }
+  }
+  checkCookie()
+
+  bannercloser.addEventListener('click', () => {
+      var d = new Date();
+      d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
+      var expires = "; expires=" + d.toGMTString();
+      document.cookie = "scrabble-banner=1" + expires + "; path=/";
+  })
+})
+
+
+</script>
+
+
+<%= render(Primer::Alpha::Banner.new(icon: :info, dismiss_scheme: :hide, classes: "scrabble-banner")) { "Drag and drop the letters of the word into the correct order on the bottom row of the board." } %>
+
+
+<div class="scrabble-audio">
+  <%= audio_tag(url_for(@word.audio_data), autoplay: true, controls: true) %>
+</div>
+
+<div class="scrabble-container">
+  <% @letters.each do |l| %>
+    <div class="letter-box board-space" ondrop="drop(event)" ondragover="allowDrop(event)" id="<%= SecureRandom.uuid %>">
+      <div class="letter-tile" draggable="true" id="<%= SecureRandom.uuid %>" ondragstart="drag(event)">
+        <span><%= l.downcase %></span>
+      </div>
+    </div>
+  <% end %>
+  <% @letters.each do |l| %>
+    <div class="guess-box board-space" ondrop="drop(event)" ondragover="allowDrop(event)" id="<%= SecureRandom.uuid %>"></div>
+  <% end %>
+</div>
+
+<div id="next-button" hidden>
+  <span>Congratulation you got the word correct!!!</span>
+  <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, size: :medium, href: week_scrabble_path(week_id: @week.id, id: @word.next_word.id))) { "Next" } unless @word.next_word.nil? %>
+</div>

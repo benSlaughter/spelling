@@ -16,5 +16,6 @@ Rails.application.routes.draw do
 
   resources :weeks  do
     resources :practice, only: [ :show, :update ]
+    resources :scrabble, only: [ :show ]
   end
 end
