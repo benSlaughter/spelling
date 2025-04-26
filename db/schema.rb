@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_09_220052) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_26_125908) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -72,8 +72,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_09_220052) do
     t.index ["week_id"], name: "index_words_on_week_id"
   end
 
+  create_table "wordsearches", force: :cascade do |t|
+    t.json "grid"
+    t.integer "week_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["week_id"], name: "index_wordsearches_on_week_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "sessions", "users"
   add_foreign_key "words", "weeks"
+  add_foreign_key "wordsearches", "weeks"
 end

@@ -16,6 +16,7 @@
 
 .page-header {
   font-size: 64px;
+  text-wrap-mode: nowrap;
 }
 
 .flash-container {

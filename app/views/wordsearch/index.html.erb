@@ -1,0 +1,18 @@
+<%= render(Primer::Alpha::Banner.new(icon: :info, dismiss_scheme: :hide, classes: "scrabble-banner")) { "Drag over the words in the wordsearch to find them!" } %>
+<br>
+<%= render(
+  WordsearchComponent.new(
+    letters: [
+      ["p", "h", "a", "c", "d", "t", "d", "m", "s"],
+      ["t", "e", "o", "e", "r", "s", "i", "r", "i"],
+      ["a", "a", "y", "r", "r", "h", "s", "a", "n"],
+      ["d", "r", "k", "e", "f", "y", "a", "q", "c"],
+      ["a", "g", "g", "a", "o", "v", "p", "h", "e"],
+      ["f", "i", "i", "l", "u", "h", "p", "n", "r"],
+      ["e", "n", "g", "i", "n", "e", "e", "r", "e"],
+      ["d", "s", "y", "h", "m", "q", "a", "r", "r"],
+      ["d", "u", "j", "b", "a", "j", "r", "o", "e"]
+    ],
+    words: ["engineer", "hear", "cereal", "disappear", "here", "sincere"]
+  )
+) %>

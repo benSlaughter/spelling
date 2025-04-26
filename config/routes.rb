@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "wordsearch/show"
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -17,5 +18,6 @@ Rails.application.routes.draw do
   resources :weeks  do
     resources :practice, only: [ :show, :update ]
     resources :scrabble, only: [ :show ]
+    resources :wordsearch, only: [ :index ]
   end
 end

@@ -1,0 +1,69 @@
+<style>
+.wordsearch-container {
+  display: flex;
+  gap: 2em;
+  align-items: flex-start;
+}
+.wordsearch-grid {
+  border-collapse: collapse;
+  user-select: none;
+}
+.wordsearch-grid td {
+  border: 1px solid #444;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  font-size: 1.2em;
+  cursor: pointer;
+  background: #f8f8f8;
+  transition: background 0.2s;
+}
+
+.wordsearch-grid td.selected {
+  background: #cce5ff;
+}
+
+.wordsearch-grid td.found {
+  background: #a8e6a1;
+}
+
+.wordsearch-words {
+  min-width: 180px;
+}
+
+.wordsearch-words li {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.wordsearch-words li.found {
+  text-decoration: line-through;
+  color: #bbb;
+}
+</style>
+
+<div class="wordsearch-container" data-controller="wordsearch"
+     data-wordsearch-words-value="<%= words.to_json %>"
+     data-wordsearch-rows-value="<%= rows.size %>"
+     data-wordsearch-cols-value="<%= cols %>">
+
+  <table class="wordsearch-grid" data-wordsearch-target="grid">
+    <tbody>
+      <% rows.each_with_index do |row, i| %>
+        <tr>
+          <% row.each_with_index do |letter, j| %>
+            <td data-x="<%= j %>" data-y="<%= i %>" data-letter="<%= letter %>" data-wordsearch-target="cell">
+              <%= letter %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <ul class="wordsearch-words" data-wordsearch-target="wordlist">
+    <% words.each do |word| %>
+      <li data-word="<%= word.upcase %>" data-wordsearch-target="worditem"><%= word.upcase %></li>
+    <% end %>
+  </ul>
+</div>
