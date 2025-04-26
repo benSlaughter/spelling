@@ -15,63 +15,63 @@ weeks = [
     {
         date: Date.new(2024, 11, 18),
         note: "'oh' sounds",
-        words: %w(Sew Pharaoh Goes Folk Although)
+        words: %w[Sew Pharaoh Goes Folk Although]
     },
     {
         date: Date.new(2024, 11, 25),
         note: "",
-        words: %w(Friend Said Any Leopard February)
+        words: %w[Friend Said Any Leopard February]
     },
     {
         date: Date.new(2025, 1, 6),
         note: "'b' as in baby",
-        words: %w(Build Bottle Bridge Cupboard February)
+        words: %w[Build Bottle Bridge Cupboard February]
     },
     {
         date: Date.new(2025, 1, 13),
         note: "M",
-        words: %w(Diaphragm Bomb Column Machine Imagine)
+        words: %w[Diaphragm Bomb Column Machine Imagine]
     },
     {
         date: Date.new(2025, 1, 20),
         note: "Q and Qw",
-        words: %w(Quickly Question Quarter Weigh Awkward)
+        words: %w[Quickly Question Quarter Weigh Awkward]
     },
     {
         date: Date.new(2025, 1, 27),
         note: "P",
-        words: %w(Piece Appear Popular Opposite Poured)
+        words: %w[Piece Appear Popular Opposite Poured]
     },
     {
         date: Date.new(2025, 2, 3),
         note: "J",
-        words: %w(Bridge Trudge Soldier Suggest Change)
+        words: %w[Bridge Trudge Soldier Suggest Change]
     },
     {
         date: Date.new(2025, 2, 10),
         note: "Ch",
-        words: %w(Picture Creature Ancient Children Clutch)
+        words: %w[Picture Creature Ancient Children Clutch]
     },
     {
         date: Date.new(2025, 2, 24),
         note: "Oy",
-        words: %w(Enjoyed Lawyer Loyal Voice Noisy)
+        words: %w[Enjoyed Lawyer Loyal Voice Noisy]
     },
     {
         date: Date.new(2025, 3, 3),
         note: "Ooh",
-        words: %w(Two Too To Through Threw Blue Illusion)
+        words: %w[Two Too To Through Threw Blue Illusion]
     },
     {
         date: Date.new(2025, 3, 10),
         note: "oo",
-        words: %w(Understood Shook Push Pudding Woman)
+        words: %w[Understood Shook Push Pudding Woman]
     },
     {
         date: Date.new(2025, 3, 17),
         note: "ear",
-        words: %w(Here Hear Disappear Engineer Cereal Sincere)
-    },
+        words: %w[Here Hear Disappear Engineer Cereal Sincere]
+    }
 ]
 
 weeks.each do |week_attr|
