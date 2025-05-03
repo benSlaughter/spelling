@@ -6,7 +6,7 @@
       </div>
     <% end %>
     <div class="practice-audio">
-      <%= audio_tag(url_for(@word.audio_data), autoplay: true, controls: true) %>
+      <%= audio_tag(url_for(@word.audio_data), autoplay: false, controls: true) %>
     </div>
     <div class="practice-word">
       <%= f.text_field :title, value: "", autofocus: true, autocomplete: "off", autocorrect: "off", spellcheck: "off" %>

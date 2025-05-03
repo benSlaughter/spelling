@@ -9,7 +9,7 @@ class WordsearchComponent < ViewComponent::Base
   end
 
   def rows
-    letters
+    letters.map { |row| row.map(&:upcase) }
   end
 
   def cols

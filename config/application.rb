@@ -26,6 +26,7 @@ module Spelling
 
     config.assets.paths << Rails.root.join("node_modules")
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    config.eager_load_paths << Rails.root.join("lib")
   end
 end
 

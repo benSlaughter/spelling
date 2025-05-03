@@ -5,7 +5,7 @@ class Word < ApplicationRecord
   alias_attribute :spelling, :title
 
   validates :spelling, presence: true
-  before_save :create_audio_data
+  before_create :create_audio_data
   before_update :update_audio_data
 
   def create_audio_data

@@ -39,7 +39,7 @@
     </div>
     <%= render(Primer::Alpha::Layout.new) do |component| %>
       <% component.with_main do %>
-        <%= render(Primer::Box.new(container: :sm, ml: 0)) do %>
+        <%= render(Primer::Box.new(container: :md, ml: 0)) do %>
           <%= render(Primer::Beta::Heading.new(tag: :h1, classes: "page-header")) { @pagehead || "Spellings" } %>
         <% end %>
       <% end %>
@@ -49,7 +49,7 @@
     <% end %>
     <%= render(Primer::Alpha::Layout.new(border: :top)) do |component| %>
       <% component.with_main(p: 2) do %>
-        <%= render(Primer::Box.new(container: :sm, p: 2, ml: 0)) do %>
+        <%= render(Primer::Box.new(container: :md, p: 2, ml: 0)) do %>
           <%= yield %>
         <% end %>
       <% end %>

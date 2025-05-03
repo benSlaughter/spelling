@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :weeks  do
     resources :practice, only: [ :show, :update ]
-    resources :scrabble, only: [ :show ]
+    resources :scramble, only: [ :index ]
     resources :wordsearch, only: [ :index ]
   end
 end

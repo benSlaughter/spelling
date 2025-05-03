@@ -12,6 +12,14 @@ class WeekComponent < ViewComponent::Base
     week_practice_path(week_id: week.id, id: week.words.first.id)
   end
 
+  def scramble_path
+    week_scramble_index_path(week_id: week.id)
+  end
+
+  def wordsearch_path
+    week_wordsearch_index_path(week_id: week.id)
+  end
+
   def is_admin?
     authenticated?
   end

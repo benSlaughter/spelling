@@ -6,9 +6,9 @@
     <% @week.note %>
   <% end %>
   <% component.with_actions do %>
-    <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, href: practice_path)) do %>
-      Practice
-    <% end %>
+    <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, href: practice_path)) do %>Practice<% end %>
+    <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, href: scramble_path)) do %>Scramble<% end %>
+    <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, href: wordsearch_path)) do %>Wordsearch<% end %>
     <% if is_admin? %>
       <%= render(Primer::Beta::Button.new(scheme: :secondary, tag: :a, href: edit_week_path)) do %>
         Edit
