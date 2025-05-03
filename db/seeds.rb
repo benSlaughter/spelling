@@ -79,6 +79,8 @@ weeks.each do |week_attr|
     week_attr[:words].each do |word|
         Word.find_or_create_by!(title: word, week: week)
     end
+
+    week.create_wordsearch
 end
 
 user = User.find_by(email_address: "you@example.org")
