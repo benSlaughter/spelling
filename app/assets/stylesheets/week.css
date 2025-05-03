@@ -4,7 +4,3 @@
   grid-template-rows: repeat(5, 1fr);
   justify-content: left;
 }
-
-.word-sound {
-  justify-self: right;
-}

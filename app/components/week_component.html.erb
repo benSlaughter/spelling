@@ -24,7 +24,7 @@
     <div class="word-title">
       <h2><%= word.title %></h2>
     </div>
-    <div class="word-sound">
+    <div class="word-audio">
       <%= audio_tag(url_for(word.audio_data), autoplay: false, controls: true) %>
     </div>
   <% end %>
