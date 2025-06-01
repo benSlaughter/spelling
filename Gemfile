@@ -68,6 +68,6 @@ gem "pry", "~> 0.15.0"
 
 gem "primer_view_components", "~> 0.36.2"
 
-gem "view_component", "~> 3.21"
+gem "view_component", "~> 3.23"
 
 gem "will_paginate", "~> 4.0"
