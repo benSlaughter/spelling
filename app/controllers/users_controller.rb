@@ -37,6 +37,6 @@ class UsersController < ApplicationController
   end
 
   def school_code
-    params[:school_code].presence
+    Rails.env.development? ? "1234" : school_code
   end
 end
