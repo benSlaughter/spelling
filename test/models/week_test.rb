@@ -33,7 +33,7 @@ class WeekTest < ActiveSupport::TestCase
   test "creates wordsearch on create if words are present" do
     @week.words.create!(title: "testword")
     assert_difference "Wordsearch.count", 1 do
-      Week.create!(note: "With word", date: Date.today, words_attributes: [{title: "testword"}])
+      Week.create!(note: "With word", date: Date.today, words_attributes: [ { title: "testword" } ])
     end
   end
 end
