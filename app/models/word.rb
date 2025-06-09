@@ -18,7 +18,7 @@ class Word < ApplicationRecord
   end
 
   def update_audio_data
-    if title_changed?
+    if will_save_change_to_title?
       create_audio_data
     end
   end

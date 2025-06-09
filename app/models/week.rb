@@ -15,11 +15,12 @@ class Week < ApplicationRecord
 
   def create_wordsearch
     return unless wordsearch.nil?
+    return if words.empty?
     grid = Spelling::Grid.build_wordsearch(words.map(&:spelling))
-    Wordsearch.new(grid: grid.store_grid, week: self).save
+    Wordsearch.create!(grid: grid.store_grid, week: self)
   end
 
-  def create_wordsearch
+  def update_wordsearch
     return create_wordsearch if wordsearch.nil?
     grid = Spelling::Grid.build_wordsearch(words.map(&:spelling))
     wordsearch.update(grid: grid.store_grid)
