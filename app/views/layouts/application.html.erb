@@ -1,42 +1,11 @@
 <!DOCTYPE html>
-<html>
   <head>
-    <title><%= content_for(:title) || "Spelling" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <%= stylesheet_link_tag "@primer/css/dist/primer.css", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "@primer/view-components/app/assets/styles/primer_view_components.css", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "@primer/primitives/dist/css/primitives.css", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "@primer/primitives/dist/css/functional/themes/light.css", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "@primer/primitives/dist/css/functional/themes/dark.css", "data-turbo-track": "reload" %>
-
-    <%= javascript_include_tag "@primer/view-components/app/assets/javascripts/primer_view_components.js", "data-turbo-track": "reload" %>
+    <%= render "layouts/head" %>
   </head>
 
   <body data-color-mode="light" data-light-theme="light" data-dark-theme="dark">
-    <div class="flash-container">
-      <% flash.each do |scheme, message| %>
-        <% scheme = :danger if scheme.to_sym == :alert %>
-        <% scheme = :default if scheme.to_sym == :notice %>
-        <%= render(Primer::Alpha::Banner.new(scheme: scheme.to_sym)) { message } %>
-      <% end %>
-    </div>
+    <%= render "layouts/flash" %>
+
     <%= render(Primer::Alpha::Layout.new) do |component| %>
       <% component.with_main do %>
         <%= render(Primer::Box.new(container: :md, ml: 0)) do %>
@@ -47,17 +16,20 @@
         <%= link_to image_tag("file.png", size: "100"), "/" %>
       <% end %>
     <% end %>
+    
     <%= render(Primer::Alpha::Layout.new(border: :top)) do |component| %>
       <% component.with_main(p: 2) do %>
-        <%= render(Primer::Box.new(container: :md, p: 2, ml: 0)) do %>
+        <%= render(Primer::Box.new(container: :md, p: 2, ml: 0, classes: "main-container")) do %>
           <%= yield %>
         <% end %>
       <% end %>
       <% component.with_sidebar(p: 2, border: :right) do %>
-        <%= render NavigationComponent.new(open_dialog: params[:open_dialog]) %>
+        <%= render NavigationComponent.new %>
+        <%= render SideProfileComponent.new %>
       <% end %>
     <% end %>
-    <% if !Rails.env.production? %>
+
+    <% unless Rails.env.production? %>
       <%= debug(params) %>
       <%= debug(notice) %>
       <%= debug(flash) %>

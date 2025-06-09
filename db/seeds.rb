@@ -83,5 +83,17 @@ weeks.each do |week_attr|
     week.create_wordsearch
 end
 
-user = User.find_by(email_address: "you@example.org")
-User.create! email_address: "you@example.org", password: "s3cr3t", password_confirmation: "s3cr3t", username: "testing" unless user
+fake_creds = {
+    password: "s3cr3t",
+    password_confirmation: "s3cr3t"
+}
+
+# Create a student
+student = User.find_by(username: "Student")
+Student.create!(username: "Student", email_address: "student@example.org", **fake_creds) unless student
+# Create a teacher
+teacher = User.find_by(username: "Teacher")
+Teacher.create!(username: "Teacher", email_address: "teacher@example.org", **fake_creds) unless teacher
+# Create an admin
+user = User.find_by(username: "testing")
+Admin.create!(username: "testing", email_address: "admin@example.org", **fake_creds) unless user

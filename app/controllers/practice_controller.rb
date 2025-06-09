@@ -1,5 +1,4 @@
 class PracticeController < ApplicationController
-  allow_unauthenticated_access
   include Rails.application.routes.url_helpers
 
   helper_method :message

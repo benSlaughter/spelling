@@ -22,3 +22,7 @@
 .flash-container {
   margin-bottom: 5px;
 }
+
+.main-container {
+  min-height: 600px;
+}

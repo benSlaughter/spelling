@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get "wordsearch/show"
   resource :session
-  resources :passwords, param: :token
+  resources :passwords, param: :token, except: [ :index, :destroy, :show ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "weeks#index"
 
+  resource :users
   resources :weeks  do
     resources :practice, only: [ :show, :update ]
     resources :scramble, only: [ :index ]

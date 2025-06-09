@@ -1,0 +1,8 @@
+<div class="user-profile">
+  <%= render(Primer::Beta::Avatar.new(src: "https://api.dicebear.com/9.x/fun-emoji/svg?seed=#{current_user.username}", alt: "User", href: users_path, shape: :square, size: 80)) %>
+  <ul>
+    <li><strong>Username:</strong> <%= current_user.username %></li>
+    <li><strong>Email:</strong> <%= current_user.email_address %></li>
+    <li><strong>Joined:</strong> <%= current_user.created_at.strftime("%B %d, %Y") %></li>
+  </ul>
+</div>

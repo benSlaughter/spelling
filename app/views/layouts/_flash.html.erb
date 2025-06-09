@@ -1,0 +1,10 @@
+<div class="flash-container">
+  <div id="flashes">
+    <% if flash[:alert] %>
+      <%= render(Primer::Beta::Flash.new(scheme: :danger)) { flash[:alert] } %>
+    <% end %>
+    <% if flash[:notice] %>
+      <%= render(Primer::Beta::Flash.new(scheme: :success)) { flash[:notice] } %>
+    <% end %>
+  </div>
+</div>

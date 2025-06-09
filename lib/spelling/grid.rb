@@ -22,7 +22,7 @@ module Spelling
 
     def initialize(words, max_retries = 10, max_increases = 5, grid: nil, positions: nil)
       @words = words.map(&:downcase)
-      @size = words.map(&:length).max
+      @size = words.map(&:length).max + 2
       @max_retries = max_retries
       @max_increases = max_increases
       @grid = grid || Array.new(size) { Array.new(size, nil) }

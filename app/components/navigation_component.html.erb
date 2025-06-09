@@ -1,12 +1,1 @@
 <%= navigation_sidebar %>
-<%= render(Primer::Alpha::Dialog.new(id: "my-dialog", title: "Sign in", open: open_dialog, banana: true)) do |d| %>
-  <% d.with_header(show_divider: true) %>
-  <% d.with_body(pt: 2) do %>
-    <%= primer_form_with(url: session_path) do |f| %>
-      <% render(SignInForm.new(f)) %>
-    <% end %>
-  <% end %>
-  <% d.with_footer(show_divider: true) do %>
-    <%= link_to "Forgot password?", new_password_path %>
-  <% end %>
-<% end %>

@@ -1,0 +1,11 @@
+.flash-container {
+  min-width: 500px;
+  width: 100%;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  max-width: 90vw;
+  pointer-events: none; /* allows clicks through the flash if needed */
+}

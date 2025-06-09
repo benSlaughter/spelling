@@ -1,0 +1,5 @@
+<div class=login-wrapper>
+  <%= primer_form_with(model: @user) do |f| %>
+    <% render(SignUpForm.new(f, school_code: @school_code)) %>
+  <% end %>
+</div>

@@ -10,6 +10,6 @@ class ForgotPasswordForm < ApplicationForm
       placeholder: "Enter your email address"
     )
 
-    forgot_password_form.submit(name: :submit, label: "Email reset instructions")
+    forgot_password_form.submit(name: :submit, label: "Email reset instructions", scheme: :primary)
   end
 end

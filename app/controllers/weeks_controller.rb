@@ -1,5 +1,6 @@
 class WeeksController < ApplicationController
-  allow_unauthenticated_access only: %i[ index show ]
+  allow_unauthenticated_access only: %i[ index ]
+  before_action :redirect_unless_authenticated, only: %i[ index ]
 
   def index
     @weeks = Week.all
@@ -47,5 +48,11 @@ class WeeksController < ApplicationController
 
   def week_params
     params.expect(week: {})
+  end
+  
+  def redirect_unless_authenticated
+    unless authenticated?
+      redirect_to "/session/new", alert: "You must be logged in to access this page."
+    end
   end
 end

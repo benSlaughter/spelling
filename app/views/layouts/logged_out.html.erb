@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+  <head>
+    <%= render "layouts/head" %>
+  </head>
+  <body data-color-mode="light" data-light-theme="light" data-dark-theme="dark">
+  <%= render(LoggedOutComponent.new) do |component| %>
+    <% component.with_header do %>
+      <%= render "layouts/flash" %>
+    <% end %>
+    <%= yield %>
+  <% end %>
+  <% unless Rails.env.production? %>
+    <%= debug(params) %>
+    <%= debug(notice) %>
+    <%= debug(flash) %>
+    <%= debug(current_user) %>
+    <%= debug(Rails.env) %>
+  <% end %>
+  </body>
+</html>

@@ -6,6 +6,9 @@ class Week < ApplicationRecord
   validates :date, presence: true
   validates :note, presence: true
 
+  before_create :create_wordsearch
+  before_update :update_wordsearch
+
   def display
     date.nil? ? "None" : date.strftime("%A, %d %B %Y")
   end
@@ -14,5 +17,11 @@ class Week < ApplicationRecord
     return unless wordsearch.nil?
     grid = Spelling::Grid.build_wordsearch(words.map(&:spelling))
     Wordsearch.new(grid: grid.store_grid, week: self).save
+  end
+
+  def create_wordsearch
+    return create_wordsearch if wordsearch.nil?
+    grid = Spelling::Grid.build_wordsearch(words.map(&:spelling))
+    wordsearch.update(grid: grid.store_grid)
   end
 end

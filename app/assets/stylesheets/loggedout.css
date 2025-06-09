@@ -1,0 +1,34 @@
+.logged-out-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg,rgb(88, 136, 58, 0.8) 0%,rgb(95, 148, 209, 0.8) 100%);
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logged-out-box {
+  max-width: 500px;
+  width: 100%;
+  min-height: 500px;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow:
+    -2px -2px 6px 0 rgba(0, 0, 0, 0.1), /* small shadow top/left */
+     4px  4px 16px 0 rgba(0,0,0,0.25);
+}
+
+.login-wrapper {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+span.spacer:nth-child(2) {
+	flex: 4;
+}
+
+span.spacer:last-child {
+	flex: 6;
+}

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class WeekComponent < ViewComponent::Base
-  delegate :authenticated?, to: :helpers
+  delegate :current_user, to: :helpers
   attr_reader :week
 
   def initialize(week:)
@@ -21,6 +21,6 @@ class WeekComponent < ViewComponent::Base
   end
 
   def is_admin?
-    authenticated?
+    current_user&.admin?
   end
 end

@@ -2,10 +2,9 @@
 
 class NavigationComponent < ViewComponent::Base
   delegate :authenticated?, :current_user, to: :helpers
-  attr_reader :open_dialog
 
-  def initialize(open_dialog:)
-    @open_dialog = open_dialog
+  def render?
+    authenticated?
   end
 
   def navigation_sidebar
@@ -22,22 +21,6 @@ class NavigationComponent < ViewComponent::Base
       end
 
       list.with_divider
-
-      if authenticated?
-        list.with_avatar_item(
-          src: "https://avatars.githubusercontent.com/u/103004183?v=4",
-          username: current_user.username,
-          href: "/",
-          avatar_arguments: { shape: :square }
-        )
-        list.with_item(component_klass: Primer::Alpha::ActionList::Item, name: :logout, label: "Sign out", href: session_path, form_arguments: { method: :delete }) do |item|
-          item.with_leading_visual_icon(icon: :"sign-out")
-        end
-      else
-        list.with_item(label: "Sign in", content_arguments: { "data-show-dialog-id": "my-dialog" },) do |item|
-          item.with_leading_visual_icon(icon: :"sign-in")
-        end
-      end
     end
   end
 
