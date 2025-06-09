@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   private
-  
+
   def get_current_user
     @user = current_user
     raise ActiveRecord::RecordNotFound unless @user

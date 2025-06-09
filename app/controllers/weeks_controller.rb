@@ -49,7 +49,7 @@ class WeeksController < ApplicationController
   def week_params
     params.expect(week: {})
   end
-  
+
   def redirect_unless_authenticated
     unless authenticated?
       redirect_to "/session/new", alert: "You must be logged in to access this page."

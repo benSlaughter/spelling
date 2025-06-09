@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 8 }, confirmation: true, if: -> { new_record? || !password.nil? }
 
   def possessive
-    username.ends_with?('s') ? "#{username}'" : "#{username}'s"
+    username.ends_with?("s") ? "#{username}'" : "#{username}'s"
   end
 
   def admin?
