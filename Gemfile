@@ -71,3 +71,5 @@ gem "primer_view_components", "~> 0.36.2"
 gem "view_component", "~> 3.21"
 
 gem "will_paginate", "~> 4.0"
+
+gem 'newrelic_rpm', "~> 9.19"
