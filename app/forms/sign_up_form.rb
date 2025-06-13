@@ -7,7 +7,7 @@ class SignUpForm < ApplicationForm
     sign_up_form.text_field(name: :school_code, label: "School Code", required: true, placeholder: "Enter your school referral code", maxlength: 4, scope_name_to_model: false, value: @school_code)
     sign_up_form.group(layout: :horizontal) do |button_group|
       button_group.submit(name: :create_account, label: "Create account", scheme: :primary)
-      button_group.button(name: :cancel, label: "Cancel", scheme: :secondary, href: "/session/new", tag: :a)
+      button_group.button(name: :cancel, label: "Cancel", scheme: :secondary, href: "/login", tag: :a)
     end
   end
 

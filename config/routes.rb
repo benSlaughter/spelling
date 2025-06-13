@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "weeks#index"
+  get "login" => "sessions#new", as: :login
+  delete "logout" => "sessions#destroy", as: :logout
 
   resource :users
   resources :weeks  do

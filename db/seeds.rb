@@ -84,8 +84,8 @@ weeks.each do |week_attr|
 end
 
 fake_creds = {
-    password: "s3cr3t",
-    password_confirmation: "s3cr3t"
+    password: "s3cr3tPD",
+    password_confirmation: "s3cr3tPW"
 }
 
 # Create a student

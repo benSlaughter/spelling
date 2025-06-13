@@ -12,7 +12,7 @@ class SideProfileComponent < ViewComponent::Base
           href: users_path,
           avatar_arguments: { shape: :square }
         )
-        list.with_item(component_klass: Primer::Alpha::ActionList::Item, name: :logout, label: "Sign out", href: session_path, form_arguments: { method: :delete }) do |item|
+        list.with_item(component_klass: Primer::Alpha::ActionList::Item, name: :logout, label: "Sign out", href: logout_path, form_arguments: { method: :delete }) do |item|
           item.with_leading_visual_icon(icon: :"sign-out")
         end
       end
