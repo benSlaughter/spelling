@@ -72,4 +72,4 @@ gem "view_component", "~> 3.21"
 
 gem "will_paginate", "~> 4.0"
 
-gem 'newrelic_rpm', "~> 9.19"
+gem "newrelic_rpm", "~> 9.19"
