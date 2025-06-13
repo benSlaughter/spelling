@@ -84,7 +84,7 @@ weeks.each do |week_attr|
 end
 
 fake_creds = {
-    password: "s3cr3tPD",
+    password: "s3cr3tPW",
     password_confirmation: "s3cr3tPW"
 }
 
