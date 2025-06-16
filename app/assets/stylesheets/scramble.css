@@ -1,0 +1,50 @@
+.draggable-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  background: #eee;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.unscramble-message {
+  margin-bottom: 12px;
+  min-height: 1.4em;
+}
+
+.letter-tile {
+  width: 50px;
+  height: 50px;
+  font-size: 2em;
+  background: #ffe6a8;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  user-select: none;
+  transition: background 0.3s;
+}
+
+.letter-tile.solved {
+  background: #4caf50 !important;
+  color: white;
+}
+
+.unscramble-game {
+  margin-bottom: 40px;
+}
+
+.unscramble-done-message {
+  margin-top: 10px;
+  font-size: 1.1em;
+  background: #d4edda;
+  padding: 12px;
+  border-radius: 5px;
+  color: #155724;
+}
+
+.letter-tile[data-dragging="true"] {
+  background: #ffcf40;
+}
