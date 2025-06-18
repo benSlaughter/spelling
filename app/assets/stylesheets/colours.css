@@ -1,0 +1,11 @@
+:root {
+  --russet-fur: #B7410E;
+  --tawny-ember: #C6723B;
+  --tawny-ember-muted: #c6733b7e;
+  --ginger-fade: #D99058;
+  --fox-brown: #50290e;
+}
+
+.russet-fur { color: var(--russet-fur); }
+.tawny-ember { color: var(--tawny-ember); }
+.ginger-fade { color: var(--ginger-fade); }

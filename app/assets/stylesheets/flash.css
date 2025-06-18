@@ -1,11 +1,21 @@
 .flash-container {
-  min-width: 500px;
-  width: 100%;
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
   max-width: 90vw;
-  pointer-events: none; /* allows clicks through the flash if needed */
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  min-width: 500px;
+  z-index: 9999;
+  border-radius: 6px;
+  padding: 14px 24px;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+@media (max-width: calc(768px - 0.02px)) {
+  .flash-container {
+    min-width: 100%;
+    left: 0;
+    top: 0;
+    padding: 10px;
+  }
 }

@@ -3,6 +3,7 @@
     <%= render "layouts/head" %>
   </head>
   <body data-color-mode="light" data-light-theme="light" data-dark-theme="dark">
+  <%= image_tag("icon_sleeping.svg", class: "logo-top-left") %>
   <%= render(LoggedOutComponent.new) do |component| %>
     <% component.with_header do %>
       <%= render "layouts/flash" %>

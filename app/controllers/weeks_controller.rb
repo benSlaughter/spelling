@@ -3,6 +3,7 @@ class WeeksController < ApplicationController
   before_action :redirect_unless_authenticated, only: %i[ index ]
 
   def index
+    @pagehead = "All Spellings"
     @weeks = Week.all
   end
 

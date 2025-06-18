@@ -5,30 +5,21 @@
 
   <body data-color-mode="light" data-light-theme="light" data-dark-theme="dark">
     <%= render "layouts/flash" %>
-
-    <%= render(Primer::Alpha::Layout.new) do |component| %>
-      <% component.with_main do %>
-        <%= render(Primer::Box.new(container: :md, ml: 0)) do %>
-          <%= render(Primer::Beta::Heading.new(tag: :h1, classes: "page-header")) { @pagehead || "Spellings" } %>
-        <% end %>
-      <% end %>
-      <% component.with_sidebar(pl: 4) do %>
-        <%= link_to image_tag("file.png", size: "100"), "/" %>
-      <% end %>
+    <%= render(Primer::Box.new(classes: "header-wrapper")) do %>
+      <%= link_to image_tag("icon_minimal.svg", size: "100"), "/" %>
+      <%= render(Primer::Beta::Heading.new(tag: :h1, classes: "page-header")) { @pagehead || "Spellings" } %>
     <% end %>
     
     <%= render(Primer::Alpha::Layout.new(border: :top)) do |component| %>
       <% component.with_main(p: 2) do %>
-        <%= render(Primer::Box.new(container: :md, p: 2, ml: 0, classes: "main-container")) do %>
+        <%= render(Primer::Box.new(container: :md, p: 2, ml: -2, classes: "main-container")) do %>
           <%= yield %>
         <% end %>
       <% end %>
-      <% component.with_sidebar(p: 2, border: :right) do %>
-        <%= render NavigationComponent.new %>
-        <%= render SideProfileComponent.new %>
+      <% component.with_sidebar(p: 2) do %>
+        <%= render SidebarComponent.new %>
       <% end %>
     <% end %>
-
     <% unless Rails.env.production? %>
       <%= debug(params) %>
       <%= debug(notice) %>

@@ -1,0 +1,19 @@
+<%= render(Primer::Beta::NavList.new(classes: "sidebar-navigation", aria: { label: "Navigation menu" })) do |list| %>
+  <%= list.with_item(label: "Home", href: root_path) do |item| %>
+    <%= item.with_leading_visual_icon(icon: :home) %>
+  <% end %>
+  <% list.with_divider %>
+  <%= list.with_item(label: "All Spellings", href: weeks_path) do |item| %>
+    <%= item.with_leading_visual_icon(icon: :tasklist) %>
+  <% end %>
+  <% list.with_divider %>
+  <%= list.with_item(label: "Most Recent", href: week_path(last_week)) do |item| %>
+    <%= item.with_leading_visual_icon(icon: :history) %>
+  <% end %>
+  <% list.with_divider %>
+  <%= list.with_avatar_item(**avatar_params) %>
+  <% list.with_divider %>
+  <%= list.with_item(label: "Sign out", href: logout_path, form_arguments: { method: :delete }) do |item| %>
+    <%= item.with_leading_visual_icon(icon: :"sign-out") %>
+  <% end %>
+<% end %>

@@ -1,0 +1,36 @@
+.sidebar-navigation {
+  .ActionListItem {
+    align-content: center;
+    height: 45px;
+  }
+
+  .ActionListItem-label {
+    color: var(--fox-brown);
+  }
+
+  .ActionListItem.ActionListItem--navActive {
+    background-color: var(--tawny-ember);
+    * { color: white !important; }
+  }
+
+  .ActionListItem:hover {
+    background-color: var(--ginger-fade) !important;
+  }
+
+  .ActionListItem.ActionListItem--navActive:not(.ActionListItem--danger):after {
+    background: none;
+  }
+
+  .avatar {
+    background-color: var(--tawny-ember);
+    box-shadow: none;
+  }
+
+  .ActionList-sectionDivider:empty {
+    position: relative;
+    width: 90%;
+    left: 5%;
+    margin: -1px 0 -1px 0;
+    background-color: var(--tawny-ember-muted);
+  }
+}
