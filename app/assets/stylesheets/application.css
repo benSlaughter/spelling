@@ -14,6 +14,13 @@
  *= require_tree .
  */
 
+.debug-info {
+  max-width: 100vw;
+  overflow-x: auto;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
  .logo-top-left {
   position: fixed;
   top: 0;
@@ -25,11 +32,12 @@
   padding: 10px;
 }
 
- .header-wrapper {
+.header-wrapper {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   margin-left: 20px;
+  margin-right: 20px;
  }
  
 .header-wrapper img {
@@ -39,7 +47,6 @@
 
  .page-header {
   font-size: 64px;
-  text-wrap-mode: nowrap;
 }
 
 .main-container {
@@ -53,5 +60,6 @@
 @media (max-width: calc(768px - 0.02px)) {
    .header-wrapper {
     flex-direction: column;
+    text-align: center;
    }
 }

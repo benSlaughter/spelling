@@ -21,11 +21,14 @@
       <% end %>
     <% end %>
     <% unless Rails.env.production? %>
-      <%= debug(params) %>
-      <%= debug(notice) %>
-      <%= debug(flash) %>
-      <%= debug(current_user) %>
-      <%= debug(Rails.env) %>
+      <div class="debug-info">
+        <h2>Debug Information</h2>
+        <%= debug(params) %>
+        <%= debug(notice) %>
+        <%= debug(flash) %>
+        <%= debug(current_user) %>
+        <%= debug(Rails.env) %>
+      </div>
     <% end %>
     <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
   </body>
