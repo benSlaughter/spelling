@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_20_104456) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_20_104918) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -75,6 +75,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_20_104456) do
     t.index ["week_id"], name: "index_words_on_week_id"
   end
 
+  create_table "wordsearch_progresses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "wordsearch_id", null: false
+    t.text "found_words"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_wordsearch_progresses_on_user_id"
+    t.index ["wordsearch_id"], name: "index_wordsearch_progresses_on_wordsearch_id"
+  end
+
   create_table "wordsearches", force: :cascade do |t|
     t.json "grid"
     t.integer "week_id", null: false
@@ -87,5 +97,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_20_104456) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "sessions", "users"
   add_foreign_key "words", "weeks"
+  add_foreign_key "wordsearch_progresses", "users"
+  add_foreign_key "wordsearch_progresses", "wordsearches"
   add_foreign_key "wordsearches", "weeks"
 end

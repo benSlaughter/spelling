@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :email_address, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 254 }, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, presence: true, length: { minimum: 8 }, confirmation: true, if: -> { new_record? || !password.nil? }
 
-    def earn_coins(amount)
+  def earn_coins(amount)
     increment!(:coins, amount)
   end
 

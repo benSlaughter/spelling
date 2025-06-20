@@ -1,8 +1,0 @@
-<%= render(Primer::Alpha::Banner.new(icon: :info, dismiss_scheme: :hide, classes: "scramble-banner")) { "Drag over the words in the wordsearch to find them!" } %>
-<br>
-<%= render(
-  WordsearchComponent.new(
-    letters: @grid.grid,
-    words: @grid.words
-  )
-) %>

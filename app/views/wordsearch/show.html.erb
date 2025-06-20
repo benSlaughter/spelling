@@ -1,0 +1,6 @@
+<%= render(Primer::Alpha::Banner.new(icon: :info, dismiss_scheme: :hide, classes: "wordsearch-banner")) { "Drag over the words in the wordsearch to find them!" } %>
+<br>
+<div class="wordsearch-container"
+     data-controller="wordsearch"
+     data-wordsearch-id="<%= @wordsearch.id %>">
+</div>

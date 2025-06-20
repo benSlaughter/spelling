@@ -16,11 +16,15 @@ Rails.application.routes.draw do
   root "weeks#index"
   get "login" => "sessions#new", as: :login
   delete "logout" => "sessions#destroy", as: :logout
-
+  
   resource :users
+  
   resources :weeks  do
     resources :practice, only: [ :show, :update ]
     resources :scramble, only: [ :index ]
-    resources :wordsearch, only: [ :index ]
+  end
+
+  resources :wordsearch, only: [ :show ] do
+    post :progress, on: :member
   end
 end

@@ -1,17 +1,13 @@
-// app/javascript/controllers/wordsearch_controller.js
 import { Controller } from "@hotwired/stimulus"
 
 // Helper to get direction and enumerate path between two points
 function getLine(from, to) {
   const path = [];
   const dx = to.x - from.x, dy = to.y - from.y;
-  // Only allow straight or diagonal lines
   if (!(dx === 0 || dy === 0 || Math.abs(dx) === Math.abs(dy))) return null;
-
   const steps = Math.max(Math.abs(dx), Math.abs(dy));
   const stepX = dx ? dx / Math.abs(dx) : 0;
   const stepY = dy ? dy / Math.abs(dy) : 0;
-
   for (let i = 0; i <= steps; i++) {
     path.push({ x: from.x + stepX * i, y: from.y + stepY * i });
   }
@@ -19,38 +15,89 @@ function getLine(from, to) {
 }
 
 export default class extends Controller {
-  static targets = ["grid", "cell", "wordlist", "worditem"];
-  static values = {
-    words: Array,
-    rows: Number,
-    cols: Number
+  connect() {
+    const id = this.element.dataset.wordsearchId;
+    fetch(`/wordsearch/${id}.json`)
+      .then(response => response.json())
+      .then(data => this.initializeWordsearch(data));
   }
 
-  connect() {
+  initializeWordsearch(data) {
+    // --- Build the grid ---
+    const rows = Array.isArray(data.grid) ? data.grid : data.grid.split(" ");
+    const table = document.createElement("table");
+    table.className = "wordsearch-grid";
+    rows.forEach((row, i) => {
+      const tr = document.createElement("tr");
+      row.split("").forEach((letter, j) => {
+        const td = document.createElement("td");
+        td.dataset.x = j;
+        td.dataset.y = i;
+        td.dataset.letter = letter;
+        td.textContent = letter;
+        tr.appendChild(td);
+      });
+      table.appendChild(tr);
+    });
+    this.element.appendChild(table);
+
+    // --- Build the word list ---
+    const ul = document.createElement("ul");
+    ul.className = "wordsearch-words";
+    data.words.forEach(word => {
+      const li = document.createElement("li");
+      li.textContent = word.toUpperCase();
+      li.dataset.word = word.toUpperCase();
+      if (data.found_words.includes(word.toUpperCase())) {
+        li.classList.add("found");
+      }
+      ul.appendChild(li);
+    });
+    this.element.appendChild(ul);
+
+    // --- Store references for selection logic ---
+    this.gridTarget = table;
+    this.wordlistTarget = ul;
+    this.cellTargets = Array.from(table.querySelectorAll("td"));
+    this.worditemTargets = Array.from(ul.querySelectorAll("li"));
+    this.wordsValue = data.words;
+    this.foundWords = new Set(data.found_words.map(w => w.toUpperCase()));
+    this.positions = data.positions;
+
+    // --- Highlight found words in the grid using positions ---
+    this.foundWords.forEach(word => {
+      const pos = this.positions[word.toLowerCase()];
+      if (!pos) return;
+      let { row, col, direction } = pos;
+      row = parseInt(row, 10);
+      col = parseInt(col, 10);
+      const wordLength = word.length;
+      for (let i = 0; i < wordLength; i++) {
+        let x = col, y = row;
+        if (direction === "right") x += i;
+        if (direction === "down") y += i;
+        if (direction === "diagonal") { x += i; y += i; }
+        const cell = table.querySelector(`td[data-x="${x}"][data-y="${y}"]`);
+        if (cell) cell.classList.add("found");
+      }
+    });
+
+    // --- Set up selection logic ---
     this.selectedCells = [];
-    this.foundWords = new Set();
     this.startCell = null;
     this.isSelecting = false;
     this.isTouchSelecting = false;
-
     this.cellsByXY = {};
     this.cellTargets.forEach(cell => {
       const x = +cell.dataset.x, y = +cell.dataset.y;
       this.cellsByXY[`${x},${y}`] = cell;
-
-      // Mouse events
       cell.addEventListener('mousedown', e => this.onCellMouseDown(cell, e));
       cell.addEventListener('mouseover', e => this.onCellMouseOver(cell, e));
       cell.addEventListener('mouseup', e => this.onCellMouseUp(cell, e));
-
-      // Touch events (cell)
       cell.addEventListener('touchstart', e => this.onCellTouchStart(cell, e), {passive: false});
     });
-
-    // Touch events (grid handles move/end)
-    this.gridTarget.addEventListener('touchmove', e => this.onGridTouchMove(e), {passive: false});
-    this.gridTarget.addEventListener('touchend', e => this.onGridTouchEnd(e), {passive: false});
-
+    table.addEventListener('touchmove', e => this.onGridTouchMove(e), {passive: false});
+    table.addEventListener('touchend', e => this.onGridTouchEnd(e), {passive: false});
     document.addEventListener('mouseup', () => this.onMouseUp());
   }
 
@@ -82,7 +129,6 @@ export default class extends Controller {
     this.startCell = null;
   }
   onMouseUp() {
-    // Safety to end selection
     if (this.isSelecting) {
       this.checkSelection();
       this.isSelecting = false;
@@ -92,7 +138,6 @@ export default class extends Controller {
 
   // --------- Touch Events ---------
   onCellTouchStart(cell, event) {
-    // Only handle single finger
     if (event.touches.length !== 1) return;
     event.preventDefault();
     this.clearSelection();
@@ -105,14 +150,10 @@ export default class extends Controller {
   onGridTouchMove(event) {
     if (!this.isTouchSelecting || !this.touchStartCell) return;
     event.preventDefault();
-
     const touch = event.touches[0];
-    // Find the cell under the touch
     const targetCell = this._cellFromTouch(touch);
     if (!targetCell || targetCell === this.lastTouchCell) return;
     this.lastTouchCell = targetCell;
-
-    // Figure selection path
     this.clearSelection();
     const from = { x: +this.touchStartCell.dataset.x, y: +this.touchStartCell.dataset.y };
     const to = { x: +targetCell.dataset.x, y: +targetCell.dataset.y };
@@ -131,10 +172,8 @@ export default class extends Controller {
   }
 
   _cellFromTouch(touch) {
-    // Find element at touch point
     const el = document.elementFromPoint(touch.clientX, touch.clientY);
     if (!el) return null;
-    // Find nearest TD with data-x
     let cell = el.closest("td[data-x][data-y]");
     if (cell && this.gridTarget.contains(cell)) {
       return cell;
@@ -154,7 +193,6 @@ export default class extends Controller {
   checkSelection() {
     const word = this.getSelectedWord();
     const wordRev = this.getSelectedWordReverse();
-
     let found = null;
     for (const target of this.wordsValue.map(w => w.toUpperCase())) {
       if (word === target || wordRev === target) {
@@ -170,6 +208,15 @@ export default class extends Controller {
         if (item.dataset.word === found) {
           item.classList.add('found');
         }
+      });
+      // --- Send progress to server ---
+      fetch(`/wordsearch/${this.element.dataset.wordsearchId}/progress`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify({ word: found })
       });
     } else {
       this.clearSelection();

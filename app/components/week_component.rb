@@ -16,10 +16,6 @@ class WeekComponent < ViewComponent::Base
     week_scramble_index_path(week_id: week.id)
   end
 
-  def wordsearch_path
-    week_wordsearch_index_path(week_id: week.id)
-  end
-
   def is_admin?
     current_user&.admin?
   end
