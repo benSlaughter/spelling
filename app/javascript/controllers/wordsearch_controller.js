@@ -86,6 +86,12 @@ export default class extends Controller {
       }
     });
 
+    // --- Show complete message if all words are already found ---
+    if (this.foundWords.size === this.wordsValue.length) {
+      const msg = this.element.querySelector('.wordsearch-complete-message');
+      if (msg) msg.style.display = 'block';
+    }
+
     // --- Set up selection logic ---
     this.selectedCells = [];
     this.startCell = null;
@@ -115,6 +121,7 @@ export default class extends Controller {
     cell.classList.add('selected');
     this.selectedCells = [cell];
   }
+
   onCellMouseOver(cell, event) {
     if (!this.isSelecting || !this.startCell) return;
     this.clearSelection();
@@ -126,12 +133,14 @@ export default class extends Controller {
       this.selectedCells.forEach(c => c.classList.add('selected'));
     }
   }
+
   onCellMouseUp(cell, event) {
     if (!this.isSelecting || !this.startCell) return;
     this.checkSelection();
     this.isSelecting = false;
     this.startCell = null;
   }
+
   onMouseUp() {
     if (this.isSelecting) {
       this.checkSelection();
@@ -151,6 +160,7 @@ export default class extends Controller {
     cell.classList.add('selected');
     this.selectedCells = [cell];
   }
+
   onGridTouchMove(event) {
     if (!this.isTouchSelecting || !this.touchStartCell) return;
     event.preventDefault();
@@ -167,6 +177,7 @@ export default class extends Controller {
       this.selectedCells.forEach(c => c.classList.add('selected'));
     }
   }
+
   onGridTouchEnd(event) {
     if (!this.isTouchSelecting) return;
     this.checkSelection();
@@ -190,10 +201,12 @@ export default class extends Controller {
     if (this.selectedCells.length === 0) return null;
     return this.selectedCells.map(cell => cell.dataset.letter).join('').toUpperCase();
   }
+
   getSelectedWordReverse() {
     if (this.selectedCells.length === 0) return null;
     return this.selectedCells.map(cell => cell.dataset.letter).reverse().join('').toUpperCase();
   }
+
   checkSelection() {
     const word = this.getSelectedWord();
     const wordRev = this.getSelectedWordReverse();
@@ -222,11 +235,18 @@ export default class extends Controller {
         },
         body: JSON.stringify({ word: found })
       });
+
+      // --- Show complete message if all words found ---
+      if (this.foundWords.size === this.wordsValue.length) {
+        const msg = this.element.querySelector('.wordsearch-complete-message');
+        if (msg) msg.style.display = '';
+      }
     } else {
       this.clearSelection();
     }
     this.selectedCells = [];
   }
+
   clearSelection() {
     this.cellTargets.forEach(cell => cell.classList.remove('selected'));
     this.selectedCells = [];

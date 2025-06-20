@@ -1,5 +1,6 @@
 class WordsearchController < ApplicationController
   def show
+    @pagehead = "Spelling Wordsearch"
     @wordsearch = Wordsearch.find(params[:id])
     progress = WordsearchProgress.find_by(user: current_user, wordsearch: @wordsearch)
     grid_data = JSON.parse(@wordsearch.grid)

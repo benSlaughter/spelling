@@ -4,6 +4,18 @@
   align-items: flex-start;
   flex-wrap: wrap;
 }
+
+.wordsearch-complete-message {
+  display: none;
+  font-size: 1.5em;
+  color: #28a745;
+  margin-top: 1em;
+  flex-basis: 100%;
+  width: 100%;
+  order: 0; /* ensure it's first if needed */
+}
+
+/* Wordsearch */
 .wordsearch-grid {
   border-collapse: collapse;
   user-select: none;
@@ -20,24 +32,21 @@
   background: #f8f8f8;
   transition: background 0.2s;
 }
-
 .wordsearch-grid td.selected {
   background: #cce5ff;
 }
-
 .wordsearch-grid td.found {
   background: #a8e6a1;
 }
 
+/* Words list next to wordsearch */
 .wordsearch-words {
   min-width: 180px;
 }
-
 .wordsearch-words li {
   font-size: 1.2em;
   margin-bottom: 0.5em;
 }
-
 .wordsearch-words li.found {
   text-decoration: line-through;
   color: #bbb;
