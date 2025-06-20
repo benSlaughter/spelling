@@ -239,7 +239,7 @@ export default class extends Controller {
       // --- Show complete message if all words found ---
       if (this.foundWords.size === this.wordsValue.length) {
         const msg = this.element.querySelector('.wordsearch-complete-message');
-        if (msg) msg.style.display = '';
+        if (msg) msg.style.display = 'block';
       }
     } else {
       this.clearSelection();

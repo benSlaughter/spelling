@@ -8,6 +8,10 @@
     <%= render(Primer::Box.new(classes: "header-wrapper")) do %>
       <%= link_to image_tag("icon_minimal.svg", size: "100"), "/" %>
       <%= render(Primer::Beta::Heading.new(tag: :h1, classes: "page-header")) { @pagehead || "Spellings" } %>
+      <div class="coins-container">
+        <span>Letter coins: <%= current_user.coins %></span>
+        <%= link_to image_tag("fancy-coin.svg", size: "80"), "/" %>
+      </div>
     <% end %>
     
     <%= render(Primer::Alpha::Layout.new(border: :top)) do |component| %>
