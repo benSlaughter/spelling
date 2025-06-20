@@ -1,18 +1,21 @@
-<% content_for :head do %>
-  <%= javascript_include_tag "scramble", "data-turbo-track": "reload" %>
-<% end %>
-
-<% @words.each_with_index do |word, idx| %>
-  <div class="unscramble-game" data-index="<%= idx %>">
-    <h3 class="unscramble-message" data-index="<%= idx %>">
-      Unscramble this word:
-    </h3>
-    <div id="letter-row-<%= idx %>" class="draggable-container" data-index="<%= idx %>" data-answer="<%= word.title.downcase %>">
-      <% word.title.downcase.chars.shuffle.each_with_index do |l, i| %>
-        <div class="letter-tile" data-letter="<%= l %>" data-index="<%= i %>">
-          <%= l %>
-        </div>
-      <% end %>
+<div data-controller="scramble">
+  <% @words.each_with_index do |word, idx| %>
+    <div class="unscramble-game" data-index="<%= idx %>">
+      <h3 class="unscramble-message" data-scramble-target="message" data-index="<%= idx %>">
+        Unscramble this word:
+      </h3>
+      <div
+        id="letter-row-<%= idx %>"
+        class="draggable-container"
+        data-scramble-target="container"
+        data-index="<%= idx %>"
+        data-answer="<%= word.title.downcase %>">
+        <% word.title.downcase.chars.shuffle.each_with_index do |l, i| %>
+          <div class="letter-tile" data-letter="<%= l %>" data-index="<%= i %>">
+            <%= l %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

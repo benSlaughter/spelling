@@ -1,0 +1,44 @@
+.wordsearch-container {
+  display: flex;
+  gap: 2em;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.wordsearch-grid {
+  border-collapse: collapse;
+  user-select: none;
+}
+.wordsearch-grid td {
+  border: 1px solid #444;
+  min-width: 2em;
+  min-height: 2em;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  font-size: 1.2em;
+  cursor: pointer;
+  background: #f8f8f8;
+  transition: background 0.2s;
+}
+
+.wordsearch-grid td.selected {
+  background: #cce5ff;
+}
+
+.wordsearch-grid td.found {
+  background: #a8e6a1;
+}
+
+.wordsearch-words {
+  min-width: 180px;
+}
+
+.wordsearch-words li {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.wordsearch-words li.found {
+  text-decoration: line-through;
+  color: #bbb;
+}
