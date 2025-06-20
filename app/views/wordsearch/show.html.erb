@@ -3,4 +3,7 @@
 <div class="wordsearch-container"
      data-controller="wordsearch"
      data-wordsearch-id="<%= @wordsearch.id %>">
+     <div class="spinner">
+          <%= render(Primer::Beta::Spinner.new(size: :medium)) %>
+     </div>
 </div>

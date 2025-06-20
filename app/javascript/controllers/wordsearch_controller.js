@@ -23,6 +23,10 @@ export default class extends Controller {
   }
 
   initializeWordsearch(data) {
+    // Remove the spinner if present
+    const spinner = this.element.querySelector('.spinner');
+    if (spinner) spinner.remove();
+
     // --- Build the grid ---
     const rows = Array.isArray(data.grid) ? data.grid : data.grid.split(" ");
     const table = document.createElement("table");
