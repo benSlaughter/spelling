@@ -16,6 +16,10 @@ class WeekComponent < ViewComponent::Base
     week_scramble_index_path(week_id: week.id)
   end
 
+  def guess_path
+    week_guess_path(week_id: week.id, id: week.words.first.id)
+  end
+
   def is_admin?
     current_user&.admin?
   end

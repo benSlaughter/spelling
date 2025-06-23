@@ -1,0 +1,9 @@
+<h1>Guess the correct spelling</h1>
+<br>
+<%= form_with url: try_week_guess_path, method: :post, local: true do %>
+  <div class="guess-container">
+    <% @words.shuffle.each do |word| %>
+      <%= button_tag word, name: "guess", value: word, class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>

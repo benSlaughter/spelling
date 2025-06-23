@@ -1,14 +1,16 @@
 .flash-container {
   max-width: 90vw;
   position: absolute;
-  top: 24px;
-  left: 24px;
-  min-width: 500px;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 768px;
   z-index: 9999;
   border-radius: 6px;
   padding: 14px 24px;
   font-size: 1rem;
   pointer-events: none;
+  text-align: center;
 }
 
 @media (max-width: calc(768px - 0.02px)) {
@@ -17,5 +19,6 @@
     left: 0;
     top: 0;
     padding: 10px;
+    transform: translateX(0);
   }
 }

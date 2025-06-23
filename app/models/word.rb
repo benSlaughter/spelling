@@ -23,8 +23,37 @@ class Word < ApplicationRecord
     end
   end
 
+  def guess_words
+    words = [title]
+    words << add_letter(title)
+    words << add_letter(remove_letter(title))
+    words << remove_letter(title)
+    words.shuffle
+  end
+
   def next_word
     index = week.words.index(self)
     week.words[index + 1]
+  end
+
+  private
+
+  def add_letter(word, random: false)
+    chars = word.chars
+    letters = random ? ('a'..'z').to_a : chars[1..-1]
+    chars.insert(random_location, letters.sample)
+    chars.join
+  end
+
+  def remove_letter(word)
+    return add_letter(word, random: true) if word.length <= 3
+    chars = word.chars
+    chars.delete_at(random_location)
+    chars.join 
+  end
+
+  # Never the first letter
+  def random_location
+    rand(title.length - 1) + 1
   end
 end
