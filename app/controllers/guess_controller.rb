@@ -8,13 +8,13 @@ class GuessController < ApplicationController
   def show
     @week = Week.find_by(id: params[:week_id])
     @word = @week.words.find_by(id: params[:id])
-    
+
     if @word.nil?
       flash[:alert] = "Word not found for this week."
       redirect_to week_path(@week)
       return
     end
-    
+
     @words = @word.guess_words
   end
 
@@ -38,7 +38,7 @@ class GuessController < ApplicationController
         flash[:notice] += " You've completed all words for this week!"
         redirect_to week_path(@week)
       end
-      
+
     else
       flash[:alert] = "Incorrect guess. Try again!"
       redirect_to week_guess_path(@week, @word)
