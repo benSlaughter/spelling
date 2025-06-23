@@ -15,6 +15,10 @@ class User < ApplicationRecord
     decrement!(:coins, amount) if coins >= amount
   end
 
+  def coin_amount
+    coins / 100.0
+  end
+
   def possessive
     username.ends_with?("s") ? "#{username}'" : "#{username}'s"
   end
