@@ -8,8 +8,8 @@
   <% component.with_actions do %>
     <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, href: practice_path)) do %>Practice<% end %>
     <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, href: scramble_path)) do %>Scramble<% end %>
-    <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, href: guess_path)) do %>Guessing<% end %>
-    <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, href: wordsearch_path(@week.wordsearch.id))) do %>Wordsearch<% end %>
+    <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, disabled: guess_completed?, href: guess_path)) do %>Guessing<% end %>
+    <%= render(Primer::Beta::Button.new(scheme: :primary, tag: :a, disabled: wordsearch_completed?, href: wordsearch_path(@week.wordsearch.id))) do %>Wordsearch<% end %>
     <% if is_admin? %>
       <%= render(Primer::Beta::Button.new(scheme: :secondary, tag: :a, href: edit_week_path)) do %>
         Edit
@@ -25,8 +25,11 @@
     <div class="word-title">
       <h2><%= word.title %></h2>
     </div>
-    <div class="word-audio">
-      <%= audio_tag(url_for(word.audio_data), autoplay: false, controls: true) %>
+    <div class="word-audio" data-controller="audio">
+      <button class="border-0 bgColor-default" type="button" data-audio-id="audio-<%= word.id %>" data-audio-target="button">
+        <i class="fa-solid fa-volume-high fa-xl"></i>
+      </button>
+      <audio id="audio-<%= word.id %>" src="<%= url_for(word.audio_data) %>"></audio>
     </div>
   <% end %>
 </div>

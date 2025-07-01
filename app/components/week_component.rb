@@ -8,6 +8,16 @@ class WeekComponent < ViewComponent::Base
     @week = week
   end
 
+  def wordsearch_completed?
+    progress = WordsearchProgress.find_by(user: current_user, wordsearch: week.wordsearch)
+    progress&.completed? || false
+  end
+
+  def guess_completed?
+    progress = GuessProgress.find_by(user: current_user, week: week)
+    progress&.completed? || false
+  end
+
   def practice_path
     week_practice_path(week_id: week.id, id: week.words.first.id)
   end

@@ -24,11 +24,9 @@ class Word < ApplicationRecord
   end
 
   def guess_words
-    words = [ title ]
-    words << add_letter(title)
-    words << add_letter(remove_letter(title))
-    words << remove_letter(title)
-    words.shuffle
+    words = []
+    10.times { words << random_transform(title) }
+    (words << title).uniq.last(4).shuffle
   end
 
   def next_word
@@ -37,6 +35,12 @@ class Word < ApplicationRecord
   end
 
   private
+
+  def random_transform(word)
+    methods = [:add_letter, :remove_letter, :shuffle_letters]
+    method = methods.sample
+    send(method, word)
+  end
 
   def add_letter(word, random: false)
     chars = word.chars
@@ -52,8 +56,16 @@ class Word < ApplicationRecord
     chars.join
   end
 
-  # Never the first letter
+  def shuffle_letters(word)
+    return add_letter(word, random: true) if word.length <= 3
+    chars = word.chars
+    idx = random_location
+    chars[idx], chars[idx + 1] = chars[idx + 1], chars[idx]
+    chars.join
+  end
+
+  # Never the first or last letter
   def random_location
-    rand(title.length - 1) + 1
+    rand(title.length - 2) + 1
   end
 end

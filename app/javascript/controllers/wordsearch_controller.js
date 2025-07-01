@@ -38,7 +38,7 @@ export default class extends Controller {
         td.dataset.x = j;
         td.dataset.y = i;
         td.dataset.letter = letter;
-        td.textContent = letter;
+        td.textContent = letter.toUpperCase();
         tr.appendChild(td);
       });
       table.appendChild(tr);

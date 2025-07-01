@@ -1,6 +1,11 @@
 .week-container {
   display: grid;
-  grid-template-columns: repeat(2, 50%);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: 1fr;
   justify-content: left;
+  gap: 10px;
+}
+
+.word-audio {
+  padding: 5px;
 }

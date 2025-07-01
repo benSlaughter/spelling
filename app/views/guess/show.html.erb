@@ -2,8 +2,8 @@
 <br>
 <%= form_with url: try_week_guess_path, method: :post, local: true do %>
   <div class="guess-container">
-    <% @words.shuffle.each do |word| %>
-      <%= button_tag word, name: "guess", value: word, class: "btn btn-secondary" %>
+    <% @words.each do |word| %>
+      <%= button_tag word, name: "guess", value: word, class: "btn guess-button #{"btn-primary" if @guessed && word == @word.title}" %>
     <% end %>
   </div>
 <% end %>
