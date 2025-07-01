@@ -37,7 +37,7 @@ class Word < ApplicationRecord
   private
 
   def random_transform(word)
-    methods = [:add_letter, :remove_letter, :shuffle_letters]
+    methods = [ :add_letter, :remove_letter, :shuffle_letters ]
     method = methods.sample
     send(method, word)
   end
