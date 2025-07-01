@@ -64,6 +64,6 @@ end
 
 gem "tts", "~> 0.8.2"
 gem "pry", "~> 0.15.0"
-gem "primer_view_components", "~> 0.36.2"
+gem "primer_view_components", "~> 0.43.5"
 gem "view_component", "~> 3.21"
 gem "will_paginate", "~> 4.0"
